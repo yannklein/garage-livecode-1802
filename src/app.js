@@ -1,5 +1,5 @@
 // DON'T CHANGE THIS LINE
-window.myBadAssGarage = "pimp-my-code";
+window.myBadAssGarage = "badass-oreos";
 if (myBadAssGarage) document.querySelector("#garage-name").innerText = myBadAssGarage.replace(/-/g, " ");
 // //////////////////////
 

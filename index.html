@@ -22,16 +22,15 @@
           </div>
           <div class="text-center">
             <form class="car-form" id="new-car">
-              <input data-garage-target="brand" id="brand" type="text" class="form-control" placeholder="Ferrari"/>
-              <input data-garage-target="model" id="model" type="text" class="form-control" placeholder="308 GTS"/>
-              <input data-garage-target="plate" id="plate" type="text" class="form-control" placeholder="56E-478" data-garage-target="plate"/>
-              <input data-garage-target="owner" id="owner" type="text" class="form-control" placeholder="Thomas Magnum" />
+              <input id="brand" type="text" class="form-control" placeholder="Ferrari"/>
+              <input id="model" type="text" class="form-control" placeholder="308 GTS"/>
+              <input id="plate" type="text" class="form-control" placeholder="56E-478" />
+              <input id="owner" type="text" class="form-control" placeholder="Thomas Magnum" />
               <input
                 type="submit" 
                 id="submit-btn" 
                 class="btn btn-cta" 
-                value="Add a Car"
-                data-action="click->garage#addCar"/>
+                value="Add a Car"/>
             </form>
           </div>
         </div>
@@ -39,16 +38,18 @@
       
       <div class="cars-list" data-garage-target="list">
       <!-- NOTE: The team designer left you this template for a car. Enjoy! -->
-        <!-- <div class="car">
+        <div class="car">
           <div class="car-image">
-            <img src="http://loremflickr.com/280/280/Ferrari 308 GTS" />
+            <img src="http://loremflickr.com/280/280/Ferrari,308,GTS" />
           </div>
           <div class="car-info">
             <h4>Ferrari 308 GTS</h4>
             <p><strong>Owner:</strong> Thomas Magnum</p>
             <p><strong>Plate:</strong> 56E-478</p>
           </div>
-        </div> -->
+        </div>
+
+
       </div>
     </div>
 

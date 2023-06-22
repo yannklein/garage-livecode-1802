@@ -1,4 +1,4 @@
-// DON'T CHANGE THIS LINE
+// DON'T CHANGE THIS LINE ✅ 
 const myBadAssGarage = window.myBadAssGarage;
 // //////////////////////
 
@@ -7,25 +7,26 @@ const myBadAssGarage = window.myBadAssGarage;
 // Pseudo-code
 // //////////////////////
 
-// ✅ 0. Add the data-controller attribute in the HTML file
 
 // ///
 // Get all the cars
 // ///
 
-// ✅ Define target: car-list
-// ✅ There is no event to wait for! code inside the connect()
-// ✅ Fetch cars from the API
-// ✅ Display them in the cars-list
+// 1. Create the stimulus controller skeleton
+// 2. Add data-controller in the HTML and check if connected
+// 3. Target the cars-list (to add some cars in it)
+// 4. fetch the cars from API in connect()
+// 5. Insert the car data in the cars-list (inesrtAdjacentHTML)
 
 // ///
 // Add a new car
 // ///
 
-// Define target: form button
-// Define action: when click on button call postCar()
-// Post request with car data to the API
-// Get all the cars
+// 1. Add data-action on Add a Car button
+// 2. Create a new method for this action
+// 3. Target the 4 inputs
+// 4. do a POST request to our garage API with the data from the input (.value)
+// 5. Get all the cars
 
 // //////////////////////
 // Code
@@ -34,7 +35,7 @@ const myBadAssGarage = window.myBadAssGarage;
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = [ 'list', 'brand', 'plate', 'owner', 'model' ]
+  static targets = [ 'list' ]
 
   connect() {
     console.log('Hello from garage_controller.js')
@@ -48,49 +49,21 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         console.log(data)
-        this.displayCars(data)
-      })
-  }
-
-  displayCars(cars) {
-    this.listTarget.innerHTML = ""
-    cars.forEach((car) => {
-      this.listTarget.insertAdjacentHTML(
-        "beforeend",
-        `<div class="car">
-          <div class="car-image">
-            <img src="http://loremflickr.com/280/280/${car.brand} ${car.model}" />
-          </div>
-          <div class="car-info">
-            <h4>${car.brand} ${car.model}</h4>
-            <p><strong>Owner:</strong> ${car.owner}</p>
-            <p><strong>Plate:</strong> ${car.plate}</p>
-          </div>
-        </div>`)
-    })
-  }
-
-  addCar(event) {
-    event.preventDefault();
-    console.log("add car", this.brandTarget.value)
-    const url = `https://wagon-garage-api.herokuapp.com/${myBadAssGarage}/cars`
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body:
-        JSON.stringify({
-          brand: this.brandTarget.value,
-          model: this.modelTarget.value,
-          owner: this.ownerTarget.value,
-          plate: this.plateTarget.value
+        this.listTarget.innerHTML = ""
+        data.forEach((car) => {
+          this.listTarget.insertAdjacentHTML(
+            "beforeend",
+            `<div class="car">
+              <div class="car-image">
+                <img src="http://loremflickr.com/280/280/${car.brand},${car.model}" />
+              </div>
+              <div class="car-info">
+                <h4>${car.brand} ${car.model}</h4>
+                <p><strong>Owner:</strong> ${car.owner}</p>
+                <p><strong>Plate:</strong> ${car.plate}</p>
+              </div>
+            </div>`)
         })
-    }
-    console.log(options)
-    fetch(url, options)
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data)
-        this.getCars()
-      })
+    })
   }
 }
